@@ -1,5 +1,7 @@
+
 import { Component } from '@angular/core';
 import { ScoreCard } from '../../shared/components/score-card/score-card';
+import { AnalysisResult as AnalysisResultModel } from '../../core/models/analysis.model';
 
 @Component({
   selector: 'app-analysis-result',
@@ -8,13 +10,17 @@ import { ScoreCard } from '../../shared/components/score-card/score-card';
   styleUrl: './analysis-result.css'
 })
 export class AnalysisResult {
-  analysis = {
+  analysis: AnalysisResultModel = {
     id: 'demo-001',
+    resumeId: 'resume-001',
+    jobDescriptionId: 'job-001',
     resumeName: 'Arshad_Hussain_Resume.pdf',
     jobTitle: 'Java Full Stack Developer',
     company: 'ABC Technologies',
     analyzedDate: 'Sep 26, 2026',
-    overallScore: 82,
+    matchScore: 82,
+    status: 'Completed',
+    summary: 'The resume shows a strong match for the target role.',
 
     scores: [
       {
@@ -60,11 +66,7 @@ export class AnalysisResult {
       'JUnit'
     ],
 
-    missingSkills: [
-      'Docker',
-      'Kubernetes',
-      'Kafka'
-    ],
+    missingSkills: ['Docker', 'Kubernetes', 'Kafka'],
 
     strengths: [
       'Strong Java and Spring Boot experience',
@@ -78,6 +80,11 @@ export class AnalysisResult {
       'Highlight Kafka or event-driven architecture experience',
       'Add measurable impact to major project achievements',
       'Include more job-specific keywords'
+    ],
+
+    recommendations: [
+      'Highlight relevant technical skills',
+      'Add measurable achievements to project descriptions'
     ]
   };
 }

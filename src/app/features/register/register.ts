@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NotificationService } from '../../core/services/notification.service';
+import { RegisterRequest } from '../../core/models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class Register {
 
   constructor(
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   register(): void {
     if (
@@ -40,6 +41,17 @@ export class Register {
       );
       return;
     }
+
+    const request: RegisterRequest = {
+      name: this.name.trim(),
+      email: this.email.trim(),
+      password: this.password
+    };
+
+    console.log('Registration request prepared:', {
+      name: request.name,
+      email: request.email
+    });
 
     this.notificationService.info(
       'Registration will be connected to the Spring Boot authentication API.'

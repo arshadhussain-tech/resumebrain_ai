@@ -99,7 +99,7 @@
 
                 <span>📍 {{ job.location }}</span>
 
-                <span>◷ {{ job.experience }}</span>
+                <span>◷ {{ job.experienceRequired }}</span>
 
                 <span>📅 {{ job.createdDate }}</span>
 
@@ -107,7 +107,7 @@
 
               <div class="skills">
 
-                @for (skill of job.skills; track skill) {
+                @for (skill of job.requiredSkills; track skill) {
                   <span class="skill">{{ skill }}</span>
                 }
 

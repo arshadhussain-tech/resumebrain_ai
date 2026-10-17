@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FileUpload } from '../../shared/components/file-upload/file-upload';
 import { NotificationService } from '../../core/services/notification.service';
+import { ResumeService } from '../../core/services/resume';
 
 @Component({
   selector: 'app-resume-upload',
@@ -11,9 +12,12 @@ import { NotificationService } from '../../core/services/notification.service';
 })
 export class ResumeUpload {
   selectedFile: File | null = null;
+  isUploading = false;
 
   constructor(
-    private notificationService: NotificationService
+    private resumeService: ResumeService,
+    private notificationService: NotificationService,
+    private router: Router
   ) {}
 
   onFileSelected(file: File): void {
@@ -40,10 +44,29 @@ export class ResumeUpload {
       return;
     }
 
-    this.notificationService.success(
-      `"${this.selectedFile.name}" is ready for upload.`
-    );
+    if (this.isUploading) {
+      return;
+    }
 
-    // Backend API integration later.
+    this.isUploading = true;
+
+    this.resumeService.upload(this.selectedFile).subscribe({
+      next: () => {
+        this.isUploading = false;
+
+        this.notificationService.success(
+          'Resume uploaded successfully.'
+        );
+
+        void this.router.navigate(['/resumes']);
+      },
+      error: () => {
+        this.isUploading = false;
+
+        this.notificationService.error(
+          'Resume upload failed. Please try again.'
+        );
+      }
+    });
   }
 }

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { JobDescription } from '../../core/models/job.model';
+import { JobService } from '../../core/services/job';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'app-job-descriptions',
@@ -9,8 +11,7 @@ import { JobDescription } from '../../core/models/job.model';
   templateUrl: './job-descriptions.html',
   styleUrl: './job-descriptions.css'
 })
-export class JobDescriptions {
-
+export class JobDescriptions implements OnInit {
   searchTerm = '';
 
   jobs: JobDescription[] = [
@@ -63,6 +64,28 @@ export class JobDescriptions {
       status: 'Archived'
     }
   ];
+
+  constructor(
+    private jobService: JobService,
+    private notificationService: NotificationService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadJobs();
+  }
+
+  loadJobs(): void {
+    this.jobService.getAll().subscribe({
+      next: (jobs) => {
+        this.jobs = jobs;
+      },
+      error: () => {
+        this.notificationService.warning(
+          'Could not load jobs from the server. Showing demo data.'
+        );
+      }
+    });
+  }
 
   get filteredJobs(): JobDescription[] {
     const term = this.searchTerm.toLowerCase().trim();

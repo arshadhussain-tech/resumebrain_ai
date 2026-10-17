@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Resume } from '../../core/models/resume.model';
+import { ResumeService } from '../../core/services/resume';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'app-resumes',
@@ -8,8 +10,7 @@ import { Resume } from '../../core/models/resume.model';
   templateUrl: './resumes.html',
   styleUrl: './resumes.css'
 })
-export class Resumes {
-
+export class Resumes implements OnInit {
   resumes: Resume[] = [
     {
       id: 'resume-001',
@@ -37,4 +38,25 @@ export class Resumes {
     }
   ];
 
+  constructor(
+    private resumeService: ResumeService,
+    private notificationService: NotificationService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadResumes();
+  }
+
+  loadResumes(): void {
+    this.resumeService.getAll().subscribe({
+      next: (resumes) => {
+        this.resumes = resumes;
+      },
+      error: () => {
+        this.notificationService.warning(
+          'Could not load resumes from the server. Showing demo data.'
+        );
+      }
+    });
+  }
 }

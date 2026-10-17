@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NotificationService } from '../../core/services/notification.service';
+import { AuthService } from '../../core/services/auth';
 import { LoginRequest } from '../../core/models/user.model';
 
 @Component({
@@ -15,9 +16,12 @@ export class Login {
   password = '';
   rememberMe = false;
   showPassword = false;
+  isLoading = false;
 
   constructor(
-    private notificationService: NotificationService
+    private authService: AuthService,
+    private notificationService: NotificationService,
+    private router: Router
   ) {}
 
   login(): void {
@@ -33,13 +37,21 @@ export class Login {
       password: this.password
     };
 
-    console.log('Login request prepared:', {
-      email: request.email
-    });
+    this.isLoading = true;
 
-    this.notificationService.info(
-      'Login will be connected to the Spring Boot authentication API.'
-    );
+    this.authService.login(request).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.notificationService.success('Login successful.');
+        void this.router.navigate(['/dashboard']);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.notificationService.error(
+          'Login failed. Please check your credentials or try again later.'
+        );
+      }
+    });
   }
 
   togglePassword(): void {

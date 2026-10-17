@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AnalysisService } from '../../core/services/analysis';
+import { ResumeService } from '../../core/services/resume';
+import { JobService } from '../../core/services/job';
+import { Resume } from '../../core/models/resume.model';
+import { JobDescription } from '../../core/models/job.model';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'app-analyze',
@@ -8,93 +14,98 @@ import { Router } from '@angular/router';
   templateUrl: './analyze.html',
   styleUrl: './analyze.css'
 })
-export class Analyze {
-
+export class Analyze implements OnInit {
   selectedResume = '';
   selectedJob = '';
   isAnalyzing = false;
 
-  resumes = [
-    {
-      id: '1',
-      name: 'Arshad_Hussain_Resume.pdf',
-      type: 'PDF'
-    },
-    {
-      id: '2',
-      name: 'Arshad_Hussain_Java_Developer.docx',
-      type: 'DOCX'
-    },
-    {
-      id: '3',
-      name: 'Arshad_Hussain_FullStack.pdf',
-      type: 'PDF'
-    }
-  ];
+  resumes: Resume[] = [];
+  jobs: JobDescription[] = [];
 
-  jobs = [
-    {
-      id: '1',
-      title: 'Java Full Stack Developer',
-      company: 'ABC Technologies',
-      location: 'Bangalore'
-    },
-    {
-      id: '2',
-      title: 'Backend Engineer',
-      company: 'Tech Solutions',
-      location: 'Hyderabad'
-    },
-    {
-      id: '3',
-      title: 'Senior Java Developer',
-      company: 'FinTech Corp',
-      location: 'Pune'
-    },
-    {
-      id: '4',
-      title: 'Software Engineer',
-      company: 'Cloud Systems',
-      location: 'Remote'
-    }
-  ];
+  constructor(
+    private router: Router,
+    private analysisService: AnalysisService,
+    private resumeService: ResumeService,
+    private jobService: JobService,
+    private notificationService: NotificationService
+  ) {}
 
-  constructor(private router: Router) { }
+  ngOnInit(): void {
+    this.loadResumes();
+    this.loadJobs();
+  }
+
+  loadResumes(): void {
+    this.resumeService.getAll().subscribe({
+      next: (resumes) => {
+        this.resumes = resumes;
+      },
+      error: () => {
+        this.notificationService.error(
+          'Could not load resumes. Please try again later.'
+        );
+      }
+    });
+  }
+
+  loadJobs(): void {
+    this.jobService.getAll().subscribe({
+      next: (jobs) => {
+        this.jobs = jobs;
+      },
+      error: () => {
+        this.notificationService.error(
+          'Could not load job descriptions. Please try again later.'
+        );
+      }
+    });
+  }
 
   get canAnalyze(): boolean {
-    return !!this.selectedResume && !!this.selectedJob;
+    return !!this.selectedResume &&
+      !!this.selectedJob &&
+      !this.isAnalyzing;
   }
 
   analyzeResume(): void {
-
     if (!this.canAnalyze) {
+      this.notificationService.warning(
+        'Please select a resume and a job description.'
+      );
       return;
     }
 
     this.isAnalyzing = true;
 
-    // Temporary mock analysis.
-    // This will be replaced with the Spring Boot API call.
-
-    setTimeout(() => {
-      this.isAnalyzing = false;
-      this.router.navigate(['/analysis', 'demo-001']);
-    }, 1500);
+    this.analysisService.analyze(
+      this.selectedResume,
+      this.selectedJob
+    ).subscribe({
+      next: (result) => {
+        this.isAnalyzing = false;
+        this.notificationService.success(
+          'Resume analysis completed successfully.'
+        );
+        void this.router.navigate(['/analysis', result.id]);
+      },
+      error: () => {
+        this.isAnalyzing = false;
+        this.notificationService.error(
+          'Analysis failed. Please try again.'
+        );
+      }
+    });
   }
 
   getResumeName(): string {
-    const resume = this.resumes.find(
+    return this.resumes.find(
       resume => resume.id === this.selectedResume
-    );
-
-    return resume?.name ?? '';
+    )?.name ?? '';
   }
 
   getJobTitle(): string {
-    const job = this.jobs.find(
+    return this.jobs.find(
       job => job.id === this.selectedJob
-    );
-
-    return job?.title ?? '';
+    )?.title ?? '';
   }
 }

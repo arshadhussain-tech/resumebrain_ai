@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NotificationService } from '../../core/services/notification.service';
+import { AuthService } from '../../core/services/auth';
 import { RegisterRequest } from '../../core/models/user.model';
 
 @Component({
@@ -17,15 +18,18 @@ export class Register {
   confirmPassword = '';
   showPassword = false;
   showConfirmPassword = false;
+  isLoading = false;
 
   constructor(
-    private notificationService: NotificationService
-  ) { }
+    private authService: AuthService,
+    private notificationService: NotificationService,
+    private router: Router
+  ) {}
 
   register(): void {
     if (
-      !this.name ||
-      !this.email ||
+      !this.name.trim() ||
+      !this.email.trim() ||
       !this.password ||
       !this.confirmPassword
     ) {
@@ -36,9 +40,7 @@ export class Register {
     }
 
     if (this.password !== this.confirmPassword) {
-      this.notificationService.error(
-        'Passwords do not match.'
-      );
+      this.notificationService.error('Passwords do not match.');
       return;
     }
 
@@ -48,14 +50,23 @@ export class Register {
       password: this.password
     };
 
-    console.log('Registration request prepared:', {
-      name: request.name,
-      email: request.email
-    });
+    this.isLoading = true;
 
-    this.notificationService.info(
-      'Registration will be connected to the Spring Boot authentication API.'
-    );
+    this.authService.register(request).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.notificationService.success(
+          'Registration successful. Please log in.'
+        );
+        void this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.notificationService.error(
+          'Registration failed. Please try again.'
+        );
+      }
+    });
   }
 
   togglePassword(): void {

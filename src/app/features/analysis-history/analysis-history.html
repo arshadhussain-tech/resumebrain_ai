@@ -191,11 +191,11 @@
           <div class="score">
 
             <strong
-              [class.high]="analysis.score >= 80"
-              [class.medium]="analysis.score >= 60 && analysis.score < 80"
-              [class.low]="analysis.score < 60">
+              [class.high]="analysis.matchScore >= 80"
+              [class.medium]="analysis.matchScore >= 60 && analysis.matchScore < 80"
+              [class.low]="analysis.matchScore < 60">
 
-              {{ analysis.score }}%
+              {{ analysis.matchScore }}%
 
             </strong>
 

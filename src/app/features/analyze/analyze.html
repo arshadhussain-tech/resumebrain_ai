@@ -1,0 +1,242 @@
+<div class="analyze-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>Analyze Resume</h1>
+
+      <p>
+        Compare your resume against a job description using AI-powered matching.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="analysis-layout">
+
+    <section class="card configuration-card">
+
+      <div class="card-header">
+
+        <div class="header-icon">
+          ✦
+        </div>
+
+        <div>
+          <h2>Analysis Configuration</h2>
+
+          <p>
+            Select a resume and job description to begin.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Select Resume <span>*</span>
+        </label>
+
+        <select [(ngModel)]="selectedResume">
+
+          <option value="">
+            Choose a resume
+          </option>
+
+          @for (resume of resumes; track resume.id) {
+
+            <option [value]="resume.id">
+              {{ resume.name }}
+            </option>
+
+          }
+
+        </select>
+
+        <small>
+          Select the resume you want to analyze.
+        </small>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Select Job Description <span>*</span>
+        </label>
+
+        <select [(ngModel)]="selectedJob">
+
+          <option value="">
+            Choose a job description
+          </option>
+
+          @for (job of jobs; track job.id) {
+
+            <option [value]="job.id">
+              {{ job.title }} — {{ job.company }}
+            </option>
+
+          }
+
+        </select>
+
+        <small>
+          Select the job you want to compare your resume against.
+        </small>
+
+      </div>
+
+      @if (selectedResume && selectedJob) {
+
+        <div class="selection-summary">
+
+          <div class="summary-item">
+
+            <span class="summary-icon">
+              📄
+            </span>
+
+            <div>
+              <small>Resume</small>
+
+              <strong>
+                {{ getResumeName() }}
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="summary-item">
+
+            <span class="summary-icon">
+              💼
+            </span>
+
+            <div>
+              <small>Job</small>
+
+              <strong>
+                {{ getJobTitle() }}
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      }
+
+      <button
+        type="button"
+        class="analyze-button"
+        [disabled]="!canAnalyze || isAnalyzing"
+        (click)="analyzeResume()">
+
+        @if (isAnalyzing) {
+          <span class="spinner"></span>
+          Analyzing...
+        } @else {
+          <span>✦</span>
+          Analyze Resume
+        }
+
+      </button>
+
+    </section>
+
+    <aside class="card methodology-card">
+
+      <h2>How it works</h2>
+
+      <p class="methodology-intro">
+        ResumeMatch evaluates multiple aspects of your resume against
+        the selected job description.
+      </p>
+
+      <div class="method-item">
+
+        <div class="method-icon blue">
+          35%
+        </div>
+
+        <div>
+          <strong>Semantic Similarity</strong>
+
+          <small>
+            Understands how closely the resume content matches the job.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="method-item">
+
+        <div class="method-icon purple">
+          25%
+        </div>
+
+        <div>
+          <strong>Skill Match</strong>
+
+          <small>
+            Compares technical and professional skills.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="method-item">
+
+        <div class="method-icon green">
+          15%
+        </div>
+
+        <div>
+          <strong>Experience Match</strong>
+
+          <small>
+            Evaluates experience against job requirements.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="method-item">
+
+        <div class="method-icon orange">
+          10%
+        </div>
+
+        <div>
+          <strong>Education Match</strong>
+
+          <small>
+            Compares educational qualifications.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="method-item">
+
+        <div class="method-icon red">
+          15%
+        </div>
+
+        <div>
+          <strong>Keyword Match</strong>
+
+          <small>
+            Identifies important keywords shared between both documents.
+          </small>
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</div>

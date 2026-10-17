@@ -1,0 +1,27 @@
+<div class="score-card">
+
+  <div class="score-card-header">
+
+    <div class="score-title">
+      <strong>{{ name }}</strong>
+      <span>Weight {{ weight }}%</span>
+    </div>
+
+    <strong class="score-value">
+      {{ score }}%
+    </strong>
+
+  </div>
+
+  <div class="progress-bar">
+    <div
+      class="progress-fill"
+      [style.width.%]="score">
+    </div>
+  </div>
+
+  <p>
+    {{ description }}
+  </p>
+
+</div>

@@ -1,0 +1,336 @@
+<div class="dashboard">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+            <h1>Dashboard</h1>
+
+            <p>
+                Welcome back, Arshad! Analyze your resume and discover
+                how well it matches your target jobs.
+            </p>
+        </div>
+
+        <a routerLink="/analyze" class="primary-button">
+            + Analyze Resume
+        </a>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                📄
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Resumes
+                </span>
+
+                <strong class="stat-value">
+                    {{ stats.resumes }}
+                </strong>
+
+                <span class="stat-description">
+                    Resumes uploaded
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+                📊
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Analyses
+                </span>
+
+                <strong class="stat-value">
+                    {{ stats.analyses }}
+                </strong>
+
+                <span class="stat-description">
+                    Resume analyses
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                ✓
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Average Match
+                </span>
+
+                <strong class="stat-value">
+                    {{ stats.averageMatch }}%
+                </strong>
+
+                <span class="stat-description">
+                    Across all analyses
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+                💼
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    Job Descriptions
+                </span>
+
+                <strong class="stat-value">
+                    {{ stats.jobDescriptions }}
+                </strong>
+
+                <span class="stat-description">
+                    Saved jobs
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Main Dashboard Grid -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- Recent Analyses -->
+
+        <section class="card recent-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Recent Analyses</h2>
+
+                    <p>
+                        Your latest resume matching results
+                    </p>
+                </div>
+
+                <a routerLink="/history">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="analysis-list">
+
+                @for (analysis of recentAnalyses; track analysis.jobTitle) {
+
+                <div class="analysis-item">
+
+                    <div class="analysis-icon">
+                        📄
+                    </div>
+
+                    <div class="analysis-info">
+
+                        <strong>
+                            {{ analysis.jobTitle }}
+                        </strong>
+
+                        <span>
+                            {{ analysis.company }}
+                        </span>
+
+                        <small>
+                            {{ analysis.date }}
+                        </small>
+
+                    </div>
+
+
+                    <div class="analysis-score">
+
+                        <strong>
+                            {{ analysis.score }}%
+                        </strong>
+
+                        <span>
+                            Match
+                        </span>
+
+                    </div>
+
+                </div>
+
+                }
+
+            </div>
+
+        </section>
+
+
+        <!-- Quick Actions -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Quick Actions</h2>
+
+                    <p>
+                        Get started quickly
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <a routerLink="/resumes/upload" class="action-button">
+
+                    <span class="action-icon blue">
+                        ↑
+                    </span>
+
+                    <span>
+                        <strong>Upload Resume</strong>
+                        <small>Add a new resume</small>
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a routerLink="/jobs/create" class="action-button">
+
+                    <span class="action-icon purple">
+                        +
+                    </span>
+
+                    <span>
+                        <strong>Add Job Description</strong>
+                        <small>Save a new job</small>
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a routerLink="/analyze" class="action-button">
+
+                    <span class="action-icon green">
+                        ✦
+                    </span>
+
+                    <span>
+                        <strong>Analyze Resume</strong>
+                        <small>Find your match score</small>
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- Performance -->
+
+    <section class="card performance-card">
+
+        <div class="card-header">
+
+            <div>
+                <h2>Match Performance</h2>
+
+                <p>
+                    Average performance across your analyses
+                </p>
+            </div>
+
+            <span class="performance-badge">
+                Overall {{ stats.averageMatch }}%
+            </span>
+
+        </div>
+
+
+        <div class="performance-list">
+
+            @for (item of performance; track item.name) {
+
+            <div class="performance-item">
+
+                <div class="performance-label">
+
+                    <span>
+                        {{ item.name }}
+                    </span>
+
+                    <strong>
+                        {{ item.score }}%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill" [style.width.%]="item.score">
+                    </div>
+
+                </div>
+
+            </div>
+
+            }
+
+        </div>
+
+    </section>
+
+</div>

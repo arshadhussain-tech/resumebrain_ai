@@ -1,0 +1,62 @@
+<div
+  class="upload-area"
+  [class.dragging]="isDragging"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
+
+  @if (!selectedFile) {
+
+    <div class="upload-icon">
+      ↑
+    </div>
+
+    <h3>Upload your resume</h3>
+
+    <p>
+      Drag and drop your resume here, or click to browse
+    </p>
+
+    <label class="browse-button">
+      Browse Files
+
+      <input
+        type="file"
+        accept=".pdf,.doc,.docx,.txt"
+        (change)="onFileSelected($event)"
+        hidden>
+    </label>
+
+    <span class="supported-text">
+      Supported formats: PDF, DOC, DOCX, TXT
+    </span>
+
+  } @else {
+
+    <div class="selected-file">
+
+      <div class="file-icon">
+        📄
+      </div>
+
+      <div class="file-info">
+        <strong>{{ selectedFile.name }}</strong>
+
+        <span>
+          {{ (selectedFile.size / 1024).toFixed(0) }} KB
+        </span>
+      </div>
+
+      <button
+        type="button"
+        class="remove-button"
+        (click)="removeFile()">
+        Remove
+      </button>
+
+    </div>
+
+  }
+
+</div>

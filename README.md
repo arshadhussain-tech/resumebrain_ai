@@ -1,59 +1,182 @@
-# ResumatchUi
+# ResumeBrain — AI Resume Intelligence
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+ResumeBrain is an AI-powered resume analysis and job-matching application designed to help users understand how well their resumes align with job descriptions. The project aims to make resume analysis easier through structured insights, skill matching, and resume-to-job compatibility scoring.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Dashboard:** View resume analysis information and key metrics.
+- **Resume Management:** Browse and manage resume records.
+- **Resume Upload:** Upload supported resume files, including PDF, DOC, DOCX, and TXT.
+- **Job Description Management:** Create and manage job descriptions.
+- **Resume Analysis:** Analyze resume-to-job compatibility.
+- **Analysis Results:** View analysis results and matching scores.
+- **Analysis History:** Access previous analysis records.
+- **Authentication UI:** Login and registration interfaces.
+- **Responsive Design:** Layouts designed for desktop and mobile screens.
+- **Reusable Components:** Shared UI components for file uploads, score cards, and notifications.
+
+> Note: The current frontend includes UI and mock data for the application workflows. Backend authentication, persistent storage, and AI-powered analysis will be integrated as development progresses.
+
+## Technology Stack
+
+### Frontend
+
+- Angular 20
+- TypeScript
+- HTML5 and CSS3
+- Angular Router
+- Angular Forms
+- Angular Material
+
+### Planned Backend and Data Layer
+
+- Java
+- Spring Boot
+- PostgreSQL
+- AI/NLP-based resume analysis and matching
+
+## Prerequisites
+
+Install the following tools before running the application:
+
+- [Node.js](https://nodejs.org/)
+- npm, which is included with Node.js
+- Angular CLI 20
+
+Check the installed versions:
+
+```bash
+node --version
+npm --version
+ng version
+```
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+Replace `<repository-url>` with the actual Git repository URL.
+
+### 2. Navigate to the project directory
+
+```bash
+cd resumatch-ui
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open [http://localhost:4200](http://localhost:4200) in your browser.
 
-## Code scaffolding
+The development server automatically reloads when source files change.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Available Routes
+
+| Route | Description |
+|---|---|
+| `/dashboard` | Application dashboard |
+| `/login` | Login page |
+| `/register` | Registration page |
+| `/resumes` | Resume management |
+| `/resumes/upload` | Resume upload |
+| `/jobs` | Job description management |
+| `/jobs/create` | Create a job description |
+| `/analyze` | Resume analysis |
+| `/analysis/:id` | Analysis result details |
+| `/history` | Analysis history |
+
+## Project Structure
+
+```text
+src/
+└── app/
+    ├── core/
+    │   ├── models/
+    │   └── services/
+    ├── features/
+    │   ├── login/
+    │   ├── register/
+    │   ├── dashboard/
+    │   ├── resumes/
+    │   ├── resume-upload/
+    │   ├── job-descriptions/
+    │   ├── job-description-form/
+    │   ├── analyze/
+    │   ├── analysis-result/
+    │   └── analysis-history/
+    ├── layouts/
+    │   ├── main-layout/
+    │   └── auth-layout/
+    └── shared/
+        └── components/
+            ├── navbar/
+            ├── sidebar/
+            ├── score-card/
+            └── file-upload/
+```
+
+## Development Commands
+
+### Generate a component
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Build the application
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The build output is written to the `dist/` directory.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Run unit tests
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Explore Angular CLI commands
 
 ```bash
-ng e2e
+ng generate --help
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Development Roadmap
 
-## Additional Resources
+- [x] Angular application structure and routing
+- [x] Responsive application layouts
+- [x] Resume upload interface and file validation
+- [x] Reusable UI components
+- [x] Notification service
+- [x] ResumeBrain branding
+- [ ] Complete TypeScript data models
+- [ ] Spring Boot REST API integration
+- [ ] PostgreSQL persistence
+- [ ] Backend authentication and authorization
+- [ ] AI/NLP resume parsing and job matching
+- [ ] Automated testing and end-to-end validation
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Contributing
+
+1. Create a branch for the change.
+2. Implement and test the changes.
+3. Submit a pull request with a clear description.
+
+## License
+
+A license has not yet been specified. Add a license file before distributing the project under specific reuse terms.

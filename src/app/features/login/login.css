@@ -1,0 +1,391 @@
+.auth-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==============================
+   Brand Header
+   ============================== */
+
+
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 28px 0;
+  box-sizing: border-box;
+}
+
+.auth-brand .brand-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4338CA;
+  border-radius: 11px;
+  box-shadow: 0 3px 8px rgba(67, 56, 202, 0.16);
+}
+
+.auth-brand .brand-icon svg {
+  display: block;
+  width: 27px;
+  height: 27px;
+}
+
+.auth-brand .brand-icon svg {
+  display: block;
+}
+
+.auth-brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.auth-brand-text strong {
+  color: #0F172A;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.auth-brand-text strong span {
+  color: #4338CA;
+}
+
+.auth-brand-text small {
+  color: #64748B;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+}
+
+/* ==============================
+   Container
+   ============================== */
+
+.auth-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* ==============================
+   Auth Card
+   ============================== */
+
+.auth-card {
+  width: 100%;
+  max-width: 430px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 34px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-header h1 {
+  margin: 0 0 8px;
+  font-size: 25px;
+  line-height: 1.25;
+  color: #111827;
+}
+
+.auth-header p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* ==============================
+   Form
+   ============================== */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: #111827;
+  background: #ffffff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.08);
+}
+
+/* ==============================
+   Password
+   ============================== */
+
+.password-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.password-label a {
+  font-size: 10px;
+  color: #2563eb;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.password-label a:hover {
+  text-decoration: underline;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 60px;
+}
+
+.password-input button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.password-input button:hover {
+  color: #1d4ed8;
+}
+
+/* ==============================
+   Remember Me
+   ============================== */
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.remember input {
+  margin: 0;
+  accent-color: #2563eb;
+}
+
+/* ==============================
+   Login Button
+   ============================== */
+
+.login-button {
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.login-button:hover {
+  background: #1d4ed8;
+}
+
+/* ==============================
+   Divider
+   ============================== */
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+/* ==============================
+   Signup Link
+   ============================== */
+
+.signup-link {
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.signup-link a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* ==============================
+   Footer
+   ============================== */
+
+.auth-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* ==============================
+   Mobile
+   ============================== */
+
+@media (max-width: 600px) {
+  .auth-brand {
+    padding: 16px 20px 0;
+    gap: 10px;
+  }
+
+  .auth-container {
+    justify-content: flex-start;
+    padding: 30px 16px;
+  }
+
+  .auth-card {
+    max-width: 430px;
+    padding: 25px 20px;
+    border-radius: 10px;
+  }
+
+  .auth-header h1 {
+    font-size: 23px;
+  }
+}
+
+/* ==============================
+   Small Mobile
+   ============================== */
+
+@media (max-width: 400px) {
+  .auth-brand {
+    padding: 14px 14px 0;
+    gap: 9px;
+  }
+
+  .auth-brand .brand-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .auth-brand .brand-icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .auth-brand-text strong {
+    font-size: 16px;
+  }
+
+  .auth-brand-text small {
+    font-size: 9px;
+  }
+
+  .auth-container {
+    padding: 22px 12px;
+  }
+
+  .auth-card {
+    padding: 22px 16px;
+  }
+
+  .auth-header {
+    margin-bottom: 24px;
+  }
+
+  .auth-header h1 {
+    font-size: 21px;
+  }
+
+  .auth-header p {
+    font-size: 12px;
+  }
+
+  .form-group input {
+    height: 42px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,106 @@
+<div class="resumes-page">
+
+  <div class="page-header">
+    <div>
+      <h1>My Resumes</h1>
+      <p>Manage your resumes and use them for job matching.</p>
+    </div>
+
+    <a routerLink="/resumes/upload" class="primary-button">
+      + Upload Resume
+    </a>
+  </div>
+
+  <div class="resume-summary">
+    <div class="summary-card">
+      <span class="summary-icon">📄</span>
+
+      <div>
+        <span class="summary-label">Total Resumes</span>
+        <strong>{{ resumes.length }}</strong>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <span class="summary-icon active-icon">✓</span>
+
+      <div>
+        <span class="summary-label">Active Resume</span>
+        <strong>2</strong>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <span class="summary-icon storage-icon">☁</span>
+
+      <div>
+        <span class="summary-label">Storage Used</span>
+        <strong>737 KB</strong>
+      </div>
+    </div>
+  </div>
+
+  <section class="card">
+
+    <div class="card-header">
+      <div>
+        <h2>Uploaded Resumes</h2>
+        <p>All resumes available for analysis</p>
+      </div>
+    </div>
+
+    <div class="resume-table">
+
+      <div class="table-header">
+        <span>Resume</span>
+        <span>Type</span>
+        <span>Size</span>
+        <span>Uploaded</span>
+        <span>Status</span>
+        <span>Action</span>
+      </div>
+
+      @for (resume of resumes; track resume.name) {
+
+        <div class="table-row">
+
+          <div class="resume-name">
+            <div class="file-icon">📄</div>
+
+            <div>
+              <strong>{{ resume.name }}</strong>
+              <small>Resume document</small>
+            </div>
+          </div>
+
+          <span class="file-type">
+            {{ resume.type }}
+          </span>
+
+          <span class="file-size">
+            {{ resume.size }}
+          </span>
+
+          <span class="uploaded-date">
+            {{ resume.uploadedDate }}
+          </span>
+
+          <span
+            class="status"
+            [class.archived]="resume.status === 'Archived'">
+            {{ resume.status }}
+          </span>
+
+          <button class="action-button">
+            ⋮
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+</div>

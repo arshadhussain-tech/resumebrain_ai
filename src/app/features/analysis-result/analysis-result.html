@@ -1,0 +1,14 @@
+<div class="score-grid">
+
+  @for (item of analysis.scores; track item.name) {
+
+    <app-score-card
+      [name]="item.name"
+      [score]="item.score"
+      [weight]="item.weight"
+      [description]="item.description">
+    </app-score-card>
+
+  }
+
+</div>

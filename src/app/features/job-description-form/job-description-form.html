@@ -1,0 +1,224 @@
+<div class="job-form-page">
+
+  <div class="page-header">
+
+    <div>
+      <div class="breadcrumb">
+        <a routerLink="/jobs">Job Descriptions</a>
+        <span>/</span>
+        <span>Create</span>
+      </div>
+
+      <h1>Create Job Description</h1>
+
+      <p>
+        Add a job description to compare it against your resume.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="form-layout">
+
+    <section class="card">
+
+      <div class="card-header">
+        <h2>Job Information</h2>
+        <p>Enter the basic details about the position.</p>
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group full-width">
+          <label>
+            Job Title <span>*</span>
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="job.title"
+            placeholder="e.g. Java Full Stack Developer"
+          />
+        </div>
+
+        <div class="form-group">
+
+          <label>
+            Company <span>*</span>
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="job.company"
+            placeholder="e.g. ABC Technologies"
+          />
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Location</label>
+
+          <input
+            type="text"
+            [(ngModel)]="job.location"
+            placeholder="e.g. Bangalore / Remote"
+          />
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Experience</label>
+
+          <select [(ngModel)]="job.experience">
+
+            <option value="">
+              Select experience
+            </option>
+
+            <option value="0-2 years">
+              0-2 years
+            </option>
+
+            <option value="2-4 years">
+              2-4 years
+            </option>
+
+            <option value="3-5 years">
+              3-5 years
+            </option>
+
+            <option value="5-8 years">
+              5-8 years
+            </option>
+
+            <option value="8+ years">
+              8+ years
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Required Skills</label>
+
+          <input
+            type="text"
+            [(ngModel)]="job.skills"
+            placeholder="Java, Spring Boot, AWS, Angular"
+          />
+
+          <small>
+            Separate skills using commas.
+          </small>
+
+        </div>
+
+        <div class="form-group full-width">
+
+          <label>
+            Job Description <span>*</span>
+          </label>
+
+          <textarea
+            [(ngModel)]="job.description"
+            rows="12"
+            placeholder="Paste the complete job description here..."
+          ></textarea>
+
+          <div class="character-count">
+            {{ job.description.length }} characters
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <a
+          routerLink="/jobs"
+          class="secondary-button">
+          Cancel
+        </a>
+
+        <button
+          type="button"
+          class="primary-button"
+          (click)="saveJob()">
+          Save Job Description
+        </button>
+
+      </div>
+
+    </section>
+
+    <aside class="card tips-card">
+
+      <h2>Tips for better matching</h2>
+
+      <p>
+        Providing a complete job description helps the AI matching
+        engine produce more accurate results.
+      </p>
+
+      <div class="tip">
+
+        <span>1</span>
+
+        <div>
+          <strong>Include responsibilities</strong>
+          <small>
+            Add the main responsibilities and daily tasks.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="tip">
+
+        <span>2</span>
+
+        <div>
+          <strong>Include required skills</strong>
+          <small>
+            Mention technologies, frameworks and tools.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="tip">
+
+        <span>3</span>
+
+        <div>
+          <strong>Include experience requirements</strong>
+          <small>
+            Specify the expected years of experience.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="tip">
+
+        <span>4</span>
+
+        <div>
+          <strong>Use the complete JD</strong>
+          <small>
+            Avoid pasting only the job title or a short summary.
+          </small>
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</div>

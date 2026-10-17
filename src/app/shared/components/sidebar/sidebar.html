@@ -1,0 +1,106 @@
+<aside
+  class="sidebar"
+  [class.open]="isOpen">
+
+  <nav class="navigation">
+
+    <div class="nav-section">
+
+      <span class="section-title">MAIN</span>
+
+      <a
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="closeMenu()">
+
+        <span class="nav-icon">⌂</span>
+        <span>Dashboard</span>
+
+      </a>
+
+      <a
+        routerLink="/resumes"
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="closeMenu()">
+
+        <span class="nav-icon">📄</span>
+        <span>Resumes</span>
+
+      </a>
+
+      <a
+        routerLink="/jobs"
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="closeMenu()">
+
+        <span class="nav-icon">💼</span>
+        <span>Job Descriptions</span>
+
+      </a>
+
+      <a
+        routerLink="/analyze"
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="closeMenu()">
+
+        <span class="nav-icon">🔍</span>
+        <span>Analyze Resume</span>
+
+      </a>
+
+      <a
+        routerLink="/history"
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="closeMenu()">
+
+        <span class="nav-icon">📊</span>
+        <span>Analysis History</span>
+
+      </a>
+
+    </div>
+
+    <div class="nav-section bottom-section">
+
+      <span class="section-title">ACCOUNT</span>
+
+      <a class="nav-item">
+        <span class="nav-icon">⚙</span>
+        <span>Settings</span>
+      </a>
+
+      <a
+        routerLink="/login"
+        class="nav-item"
+        (click)="closeMenu()">
+
+        <span class="nav-icon">↪</span>
+        <span>Logout</span>
+
+      </a>
+
+    </div>
+
+  </nav>
+
+  <div class="sidebar-footer">
+
+    <div class="ai-badge">
+
+      <span>✦</span>
+
+      <div>
+        <strong>AI Powered</strong>
+        <small>Smart resume matching</small>
+      </div>
+
+    </div>
+
+  </div>
+
+</aside>

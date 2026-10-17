@@ -1,0 +1,131 @@
+<div class="upload-page">
+
+  <div class="page-header">
+
+    <div>
+      <div class="breadcrumb">
+        <a routerLink="/resumes">Resumes</a>
+        <span>/</span>
+        <span>Upload</span>
+      </div>
+
+      <h1>Upload Resume</h1>
+
+      <p>
+        Upload your resume to analyze its compatibility with job descriptions.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="upload-container">
+
+    <section class="card upload-card">
+
+      <div class="card-title">
+        <div class="title-icon">↑</div>
+
+        <div>
+          <h2>Select Resume</h2>
+          <p>Upload your resume in PDF, DOC, DOCX, or TXT format.</p>
+        </div>
+      </div>
+
+      <app-file-upload
+        (fileSelected)="onFileSelected($event)"
+        (fileRemoved)="onFileRemoved()">
+      </app-file-upload>
+
+      <div class="upload-info">
+
+        <div class="info-item">
+          <span class="info-icon">✓</span>
+
+          <div>
+            <strong>Secure Processing</strong>
+            <small>Your resume will be processed securely.</small>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon">✦</span>
+
+          <div>
+            <strong>AI Analysis</strong>
+            <small>
+              Skills and experience will be extracted automatically.
+            </small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="actions">
+
+        <a
+          routerLink="/resumes"
+          class="secondary-button">
+          Cancel
+        </a>
+
+        <button
+          type="button"
+          class="primary-button"
+          [disabled]="!selectedFile"
+          (click)="uploadResume()">
+          Upload Resume
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="card tips-card">
+
+      <h2>What happens next?</h2>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+
+          <div>
+            <strong>Upload</strong>
+            <p>Your resume is uploaded securely.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+
+          <div>
+            <strong>Extract</strong>
+            <p>Resume text, skills and experience are extracted.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+
+          <div>
+            <strong>Analyze</strong>
+            <p>AI compares your resume with the selected job.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+
+          <div>
+            <strong>Improve</strong>
+            <p>Get insights to improve your resume match.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</div>

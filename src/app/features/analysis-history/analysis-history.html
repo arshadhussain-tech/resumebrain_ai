@@ -1,0 +1,254 @@
+<div class="history-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>Analysis History</h1>
+
+      <p>
+        Review your previous resume matching results.
+      </p>
+    </div>
+
+    <a
+      routerLink="/analyze"
+      class="primary-button">
+      + New Analysis
+    </a>
+
+  </div>
+
+
+  <!-- Summary -->
+
+  <div class="summary-grid">
+
+    <div class="summary-card">
+
+      <div class="summary-icon blue">
+        📊
+      </div>
+
+      <div>
+        <span>Total Analyses</span>
+        <strong>{{ analyses.length }}</strong>
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon green">
+        ✓
+      </div>
+
+      <div>
+        <span>Average Match</span>
+        <strong>78%</strong>
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon purple">
+        ★
+      </div>
+
+      <div>
+        <span>Highest Match</span>
+        <strong>91%</strong>
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon orange">
+        📄
+      </div>
+
+      <div>
+        <span>Resumes Analyzed</span>
+        <strong>3</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- History -->
+
+  <section class="card">
+
+    <div class="card-header">
+
+      <div>
+        <h2>Previous Analyses</h2>
+
+        <p>
+          Click an analysis to view the complete result.
+        </p>
+      </div>
+
+
+      <div class="filters">
+
+        <div class="search-box">
+
+          <span>⌕</span>
+
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Search analyses..."
+          />
+
+        </div>
+
+
+        <select [(ngModel)]="selectedFilter">
+
+          <option value="all">
+            All Scores
+          </option>
+
+          <option value="excellent">
+            80% and above
+          </option>
+
+          <option value="good">
+            60% - 79%
+          </option>
+
+          <option value="low">
+            Below 60%
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="history-table">
+
+      <div class="table-header">
+
+        <span>Job</span>
+        <span>Resume</span>
+        <span>Score</span>
+        <span>Analyzed</span>
+        <span>Status</span>
+        <span></span>
+
+      </div>
+
+
+      @for (analysis of filteredAnalyses; track analysis.id) {
+
+        <div class="table-row">
+
+          <div class="job-info">
+
+            <div class="job-icon">
+              💼
+            </div>
+
+            <div>
+
+              <strong>
+                {{ analysis.jobTitle }}
+              </strong>
+
+              <small>
+                {{ analysis.company }}
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <div class="resume-info">
+
+            <span class="file-icon">
+              📄
+            </span>
+
+            <span>
+              {{ analysis.resumeName }}
+            </span>
+
+          </div>
+
+
+          <div class="score">
+
+            <strong
+              [class.high]="analysis.score >= 80"
+              [class.medium]="analysis.score >= 60 && analysis.score < 80"
+              [class.low]="analysis.score < 60">
+
+              {{ analysis.score }}%
+
+            </strong>
+
+            <small>
+              Match
+            </small>
+
+          </div>
+
+
+          <span class="date">
+            {{ analysis.analyzedDate }}
+          </span>
+
+
+          <span class="status">
+            {{ analysis.status }}
+          </span>
+
+
+          <a
+            [routerLink]="['/analysis', analysis.id]"
+            class="view-button">
+
+            View
+
+          </a>
+
+        </div>
+
+      }
+
+
+      @if (filteredAnalyses.length === 0) {
+
+        <div class="empty-state">
+
+          <div>
+            🔍
+          </div>
+
+          <h3>No analyses found</h3>
+
+          <p>
+            Try changing your search or filter.
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+</div>

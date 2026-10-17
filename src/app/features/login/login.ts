@@ -1,0 +1,38 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { NotificationService } from '../../core/services/notification.service';
+
+@Component({
+  selector: 'app-login',
+  imports: [FormsModule, RouterLink],
+  templateUrl: './login.html',
+  styleUrl: './login.css'
+})
+export class Login {
+  email = '';
+  password = '';
+  rememberMe = false;
+  showPassword = false;
+
+  constructor(
+    private notificationService: NotificationService
+  ) {}
+
+  login(): void {
+    if (!this.email || !this.password) {
+      this.notificationService.warning(
+        'Please enter your email and password.'
+      );
+      return;
+    }
+
+    this.notificationService.info(
+      'Login will be connected to the Spring Boot authentication API.'
+    );
+  }
+
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+  }
+}

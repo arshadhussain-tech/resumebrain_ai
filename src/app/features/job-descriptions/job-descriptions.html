@@ -1,0 +1,160 @@
+<div class="jobs-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>Job Descriptions</h1>
+
+      <p>
+        Manage job descriptions and find the right opportunities for your resume.
+      </p>
+    </div>
+
+    <a
+      routerLink="/jobs/create"
+      class="primary-button">
+      + Add Job Description
+    </a>
+
+  </div>
+
+  <div class="summary-grid">
+
+    <div class="summary-card">
+      <div class="summary-icon blue">💼</div>
+
+      <div>
+        <span>Total Jobs</span>
+        <strong>{{ jobs.length }}</strong>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon green">✓</div>
+
+      <div>
+        <span>Active Jobs</span>
+        <strong>3</strong>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon purple">✦</div>
+
+      <div>
+        <span>Analyses Available</span>
+        <strong>12</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="card">
+
+    <div class="card-header">
+
+      <div>
+        <h2>Saved Job Descriptions</h2>
+
+        <p>
+          Job descriptions available for resume analysis
+        </p>
+      </div>
+
+      <div class="search-box">
+
+        <span>⌕</span>
+
+        <input
+          type="text"
+          placeholder="Search jobs..."
+          [(ngModel)]="searchTerm"
+        />
+
+      </div>
+
+    </div>
+
+    <div class="jobs-list">
+
+      @for (job of filteredJobs; track job.title) {
+
+        <div class="job-card">
+
+          <div class="job-main">
+
+            <div class="job-icon">
+              💼
+            </div>
+
+            <div class="job-info">
+
+              <h3>{{ job.title }}</h3>
+
+              <div class="job-company">
+                {{ job.company }}
+              </div>
+
+              <div class="job-meta">
+
+                <span>📍 {{ job.location }}</span>
+
+                <span>◷ {{ job.experience }}</span>
+
+                <span>📅 {{ job.createdDate }}</span>
+
+              </div>
+
+              <div class="skills">
+
+                @for (skill of job.skills; track skill) {
+                  <span class="skill">{{ skill }}</span>
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="job-actions">
+
+            <span
+              class="status"
+              [class.archived]="job.status === 'Archived'">
+              {{ job.status }}
+            </span>
+
+            <button class="action-button">
+              ⋮
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+      @if (filteredJobs.length === 0) {
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            🔍
+          </div>
+
+          <h3>No jobs found</h3>
+
+          <p>
+            Try searching with a different keyword.
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+</div>

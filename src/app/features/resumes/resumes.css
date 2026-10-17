@@ -1,0 +1,552 @@
+.resumes-page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* =========================
+   Page Header
+   ========================= */
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.page-header p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #6b7280;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 18px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.primary-button:hover {
+  background: #1d4ed8;
+}
+
+/* =========================
+   Resume Summary
+   ========================= */
+
+.resume-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.summary-icon {
+  flex: 0 0 46px;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #dbeafe;
+  color: #2563eb;
+
+  font-size: 19px;
+}
+
+.active-icon {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.storage-icon {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.summary-card > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.summary-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.summary-card strong {
+  font-size: 22px;
+  line-height: 1.2;
+
+  color: #111827;
+}
+
+/* =========================
+   Main Card
+   ========================= */
+
+.card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  padding: 22px;
+
+  min-width: 0;
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  margin: 0 0 5px;
+
+  font-size: 16px;
+  font-weight: 650;
+
+  color: #111827;
+}
+
+.card-header p {
+  margin: 0;
+
+  font-size: 12px;
+
+  color: #9ca3af;
+}
+
+/* =========================
+   Resume Table
+   ========================= */
+
+.resume-table {
+  width: 100%;
+  min-width: 0;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 2.5fr)
+    0.7fr
+    0.8fr
+    1.1fr
+    0.9fr
+    40px;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.table-header {
+  padding: 12px 10px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #6b7280;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.table-row {
+  padding: 16px 10px;
+
+  border-bottom: 1px solid #f3f4f6;
+
+  transition: background 0.15s ease;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:hover {
+  background: #fafafa;
+}
+
+/* =========================
+   Resume Name
+   ========================= */
+
+.resume-name {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.file-icon {
+  flex: 0 0 38px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #eff6ff;
+
+  font-size: 16px;
+}
+
+.resume-name > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.resume-name strong {
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #111827;
+}
+
+.resume-name small {
+  font-size: 10px;
+
+  color: #9ca3af;
+}
+
+/* =========================
+   Table Values
+   ========================= */
+
+.file-type,
+.file-size,
+.uploaded-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.status {
+  display: inline-flex;
+
+  width: fit-content;
+
+  padding: 5px 9px;
+
+  border-radius: 20px;
+
+  background: #dcfce7;
+  color: #15803d;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.status.archived {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* =========================
+   Action
+   ========================= */
+
+.action-button {
+  width: 32px;
+  height: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background: transparent;
+
+  color: #6b7280;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  border-radius: 6px;
+
+  transition: background 0.2s ease;
+}
+
+.action-button:hover {
+  background: #f3f4f6;
+}
+
+/* =========================
+   Tablet
+   ========================= */
+
+@media (max-width: 1050px) {
+
+  .resume-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .table-header,
+  .table-row {
+    grid-template-columns:
+      minmax(200px, 2.3fr)
+      0.7fr
+      0.8fr
+      1fr
+      0.9fr
+      36px;
+
+    gap: 10px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+
+/* =========================
+   Tablet / Small Laptop
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .resume-summary {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+   * Hide table heading and convert each
+   * resume into a card.
+   */
+
+  .table-header {
+    display: none;
+  }
+
+  .table-row {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    gap: 12px;
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+
+    background: #ffffff;
+  }
+
+  .table-row:last-child {
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 0;
+  }
+
+  .resume-name {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .status {
+    grid-column: 2;
+    grid-row: 1;
+
+    align-self: start;
+  }
+
+  .file-type,
+  .file-size,
+  .uploaded-date {
+    display: none;
+  }
+
+  .action-button {
+    grid-column: 2;
+    grid-row: 2;
+
+    justify-self: end;
+  }
+
+  .resume-name {
+    padding-right: 8px;
+  }
+}
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 650px) {
+
+  .page-header {
+    flex-direction: column;
+
+    gap: 16px;
+
+    margin-bottom: 22px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+  }
+
+  .page-header p {
+    font-size: 13px;
+  }
+
+  .primary-button {
+    width: 100%;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .card-header {
+    margin-bottom: 14px;
+  }
+
+  .summary-card {
+    padding: 16px;
+  }
+
+  .summary-icon {
+    flex-basis: 42px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .summary-card strong {
+    font-size: 20px;
+  }
+
+  .table-row {
+    padding: 14px;
+  }
+
+  .file-icon {
+    flex-basis: 36px;
+
+    width: 36px;
+    height: 36px;
+  }
+
+  .resume-name strong {
+    font-size: 12px;
+  }
+
+  .resume-name small {
+    font-size: 10px;
+  }
+}
+
+/* =========================
+   Very Small Mobile
+   ========================= */
+
+@media (max-width: 380px) {
+
+  .page-header h1 {
+    font-size: 22px;
+  }
+
+  .summary-card {
+    gap: 12px;
+  }
+
+  .table-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    gap: 8px;
+  }
+
+  .resume-name {
+    gap: 9px;
+  }
+
+  .status {
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+}
